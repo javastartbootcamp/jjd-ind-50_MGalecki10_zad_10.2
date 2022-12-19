@@ -1,16 +1,28 @@
 package pl.javastart.task;
 
-public class CardPhoneContract extends Phone {
+public class CardPhoneContract extends Contract {
+
+    protected double balance;
+    protected double smsPrice;
+    protected double mmsPrice;
+    protected double callPrice;
 
     public CardPhoneContract(double balance, double smsPrice, double mmsPrice, double callPrice) {
-        super(balance, smsPrice, mmsPrice, callPrice);
+        this.balance = balance;
+        this.smsPrice = smsPrice;
+        this.mmsPrice = mmsPrice;
+        this.callPrice = callPrice;
     }
 
     @Override
-    public void sendSms() {
-        super.sendSms();
-        smsCount++;
-        setBalance(getBalance() - getSmsPrice());
+    public boolean sendSms() {
+        if (balance > smsPrice) {
+            smsCount++;
+            balance = balance - smsPrice;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -39,7 +51,7 @@ public class CardPhoneContract extends Phone {
 
     @Override
     public void printAccountState() {
-        super.printAccountState();
+        System.out.println("Koszt abonamentu: " + phoneBill);
     }
 
     @Override

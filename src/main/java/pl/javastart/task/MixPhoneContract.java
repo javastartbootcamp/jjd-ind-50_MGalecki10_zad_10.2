@@ -1,6 +1,6 @@
 package pl.javastart.task;
 
-public class MixPhoneContract extends Phone {
+public class MixPhoneContract extends Contract {
     private int smsCount;
     private int mmsCount;
     private int minuteCount;
@@ -62,5 +62,10 @@ public class MixPhoneContract extends Phone {
                 + "Zostało smsów: " + smsCount + "\n"
                 + "Zostało mmsów: " + mmsCount + "\n"
                 + "Zostało minut: " + minuteCount + "\n";
+    }
+
+    @Override
+    public void printAccountState() {
+        System.out.println(this);
     }
 }

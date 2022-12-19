@@ -1,27 +1,23 @@
 package pl.javastart.task;
 
-public class SubscriptionPhoneContract extends Phone {
-    double phoneBill = 0;
+public class SubscriptionPhoneContract extends Contract {
+    private double phoneBill = 0;
 
-    public SubscriptionPhoneContract(double smsPrice, double mmsPrice, double callPrice) {
-        super(smsPrice, mmsPrice, callPrice);
+    public SubscriptionPhoneContract(double phoneBill) {
+        this.phoneBill = phoneBill;
     }
 
-    @Override
-    public void sendSms() {
-        super.sendSms();
+    public boolean sendSms() {
         smsCount++;
-        phoneBill += getSmsPrice();
+        return true;
     }
 
-    @Override
     public void sendMms() {
         super.sendMms();
         mmsCount++;
         phoneBill += getSmsPrice();
     }
 
-    @Override
     public void call(int seconds) {
         double price = (seconds / 60) * getCallPrice();
         System.out.println("Połączenie telefoniczne trwało " + seconds + " sekund");
@@ -31,7 +27,8 @@ public class SubscriptionPhoneContract extends Phone {
 
     @Override
     public void printAccountState() {
-        super.printAccountState();
+        System.out.println("Koszt abonamentu: " + phoneBill);
+        printUsages();
     }
 
     @Override
